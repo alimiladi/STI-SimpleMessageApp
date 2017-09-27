@@ -1,0 +1,59 @@
+.form {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.Username {
+	margin-left: 5%;
+	
+}
+
+.Password {
+	margin-left: 5.3%;	
+}
+
+.logout{
+	margin-left: 50%;
+}
+
+.admin-check{
+	margin-left : 6.9%;
+}
+
+.active-check{
+	margin-left : 7%;	
+}
+
+/* Je sélectionne les <li> du menu horizontal */
+
+ul#Horizental_menu li { 
+	display : inline;
+	padding : 0 6em; /* Pour espacer les boutons entre eux */
+	color : white; 
+}
+
+ul#Horizental_menu {
+	list-style-type : none; /* Car sinon les puces se placent n'importe où */
+}
+
+ul#Vertical_menu li{
+	padding : 0 2em; /* Pour espacer les boutons entre eux */
+	color : white; 
+}
+
+ul#Vertical_menu {
+	padding-top : 0%;
+	list-style-type : none;
+}
+
+.left_menu {
+	margin : 0%;
+	border : 0%;
+	padding : 0%;
+}
+
+.top_menu {
+	margin : 0%;
+	border : 0%;
+	padding : 0%;
+}
