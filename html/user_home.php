@@ -25,8 +25,8 @@ changer le mdp-->
 	<body>
 
 		<h3>User home</h3>
-		<button onclick="self.location.href='mailbox.php'">View messages</button><br/>
-		<button onclick="self.location.href='new.php'">New message</button><br/>
+		<button onclick="self.location.href='list_received_mails.php'">View received messages</button><br/>
+		<button onclick="self.location.href='mailbox.php'">New message</button><br/>
 		<button onclick="self.location.href='chpasswd.php'">Change password</button><br/>
 		<button onclick="self.location.href='logout.php'" class="logout">Logout</button><br/>
 	</body>

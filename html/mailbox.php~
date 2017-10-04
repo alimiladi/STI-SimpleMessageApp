@@ -25,6 +25,24 @@
                         $username = $_SESSION['login_user'];
                       }
 
+                     
+                      // Create (connect to) SQLite database in file
+                      $db = new PDO('sqlite:/var/www/databases/database.sqlite');
+
+                      // Set errormode to exceptions
+                      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                      //get user id
+                      $result = $db->query("SELECT id FROM users WHERE username = '$username';");
+                      $user = $result->fetch();
+                      $id_user = $user['id'];
+
+                      // retrieve the received messages
+                      $result = $db->query("SELECT * FROM messages WHERE id_user_receiver = '$id_user' ORDER BY time");
+
+			if($result == 0){
+				echo '<h2>la base de message est vide</h2>'
+					}
 ?>
 
         <h2> Write a new message </h2>
@@ -34,11 +52,6 @@
              <select class="form-control" name="recipient">'
 
              <?php
-                      // Create (connect to) SQLite database in file
-                      $db = new PDO('sqlite:/var/www/databases/database.sqlite');
-
-                      // Set errormode to exceptions
-                      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $result = $db->query("SELECT * FROM users WHERE NOT username = '$username'");
               while($row = $result->fetch())
