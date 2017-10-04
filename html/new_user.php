@@ -18,6 +18,13 @@
 		<title>Add a new user</title>
 		<meta charset="utf-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $(".create").click(function(){
+				alert("User created successfully");				
+			    });
+			});
+		</script>
 	</head>
 	<body>
 		<h3>Add a user</h3>
@@ -31,7 +38,7 @@
 			<input type="checkbox" name="active" value="active" class="active-check" checked><br/>
 			<label>Admin :</label>			
 			<input type="checkbox" name="admin" value="admin" class="admin-check"><br/><br/>
-			<input type="submit" value="create" id="signin" name="create">
+			<input type="submit" value="create" id="signin" name="create" class="create">
 		</form>
 		<button onclick="self.location.href='logout.php'" class="logout">Log out</button></br></br>
 		<?php

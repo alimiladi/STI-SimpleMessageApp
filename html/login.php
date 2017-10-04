@@ -5,7 +5,13 @@
 
     <title>Login page</title>
 
-  </head>
+		<script>
+			function show_alert() {
+		   		alert("Login failed\nThe username/password doesn't match");
+			}
+		</script>
+	</head>
+	
   <body>
 
 
@@ -26,15 +32,8 @@
   //if password was wrong show warning message
   if(isset($_SESSION['wrong_password']) && $_SESSION['wrong_password'])
   {
-    /*echo '<div class="alert alert-danger">
-            <center> Wrong login or inactive account</center>
-          </div>';*/
-	 echo '<script type="text/javascript">
-		window.onerror = function() {
-			var message = "Authentication error";
-			alert(message);
-			return true;
-		};
+   	echo '<script type="text/javascript">
+		show_alert();
 	</script>';
 
 	//unset wrong_password flag

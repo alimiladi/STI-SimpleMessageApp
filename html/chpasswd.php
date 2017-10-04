@@ -1,21 +1,29 @@
 <?php
 
-                      session_start();
+	session_start();
 
-                      if(!isset($_SESSION['login_user']))
-                      {
-                        header("location: login.php");
-                      }
-                      else
-                      {
-                        $username = $_SESSION['login_user'];
-                      }
-?>
+	if(!isset($_SESSION['login_user']))
+	{
+	header("location: login.php");
+	}
+	else
+	{
+	$username = $_SESSION['login_user'];
+	}
+	?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $(".submit").click(function(){
+				alert("Password changed successfully");				
+			    });
+			});
+		</script>
 		<title>Change password</title>
 	</head>
 	<body>
@@ -23,7 +31,7 @@
 		<form action="chpasswd.php" method="post">
 			<label>New password :</label>
 			<input type="password" name="Password" class="Password" id="Password" placeholder="*****" required> <br>
-			<input type="submit" name="submit" value="submit">
+			<input type="submit" name="submit" value="submit" class="submit">
 		</form>
 		<button onclick="self.location.href='logout.php'" class="logout">Log out</button></br></br>
 		<?php

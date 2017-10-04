@@ -18,9 +18,19 @@
 		<title>Registred users</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $(".submit").click(function(){
+				alert("Changes saved successfully");				
+			    });
+			});
+		</script>
 	</head>
 	<body>
 		<h3>All registred users</h3>
+
+
 		<?php
 			try{			
 				// Create (connect to) SQLite database in file
@@ -30,49 +40,60 @@
 						    PDO::ERRMODE_EXCEPTION); 
 
 				$users = $dbconn->query("SELECT * FROM users");
-				
+
 				foreach($users as $row) {
+					
+					echo "<div class='all-users'>";
 					if($row['enable'] == 1){
-						if($row['admin'] == 1)){
-							echo "<p>";
-							echo "Username: " . $row['username'] . "<br/>";
-							echo "Active: yes <br/>";
-							echo "Admin:  yes <br/>";
-//							echo "<button self.location.href='disable.php' class='logout'>Disable</button>";
-							echo "<br/>";
-							echo "</p>";
+						if($row['admin'] == 1){
+							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
+							echo "<label>Username: " .$row['username']."</label><br/>";					
+							echo "<label>Active: </label>";
+							echo "<input type='checkbox' name='active' value='active' checked><br/>";
+							echo "<label>Admin: </label>";
+							echo "<input type='checkbox' name='admin' value='admin' checked><br/>";
+							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";     
+							echo "</form>";
 						}
 						else{
-							echo "<p>";
-							echo "Username: " . $row['username'] . "<br/>";
-							echo "Active: yes <br/>";
-							echo "Admin:  no <br/>";
-//							echo "<button self.location.href='disable.php' class='logout'>Disable</button>";
-							echo "<br/>";
-							echo "</p>";
+							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
+							echo "<label>Username: " .$row['username']."</label><br/>";					
+							echo "<label>Active: </label>";
+							echo "<input type='checkbox' name='active' value='active' checked><br/>";
+							echo "<label>Admin: </label>";
+							echo "<input type='checkbox' name='admin' value='admin'><br/>";
+							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";
+							echo "</form>";
 						}
 					}
 					else{
-						if($row['admin'] == 1)){
-							echo "<p>";
-							echo "Username: " . $row['username'] . "<br/>";
-							echo "Active: no <br/>";
-							echo "Admin:  yes <br/>";
-//							echo "<button self.location.href='enable.php' class='logout'>Enable</button>";
-							echo "<br/>";
-							echo "</p>";
+						if($row['admin'] == 1){
+							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
+							echo "<label>Username: " .$row['username']."</label><br/>";					
+							echo "<label>Active: </label>";
+							echo "<input type='checkbox' name='active' value='active'><br/>";
+							echo "<label>Admin: </label>";
+							echo "<input type='checkbox' name='admin' value='admin' checked><br/>";
+							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";
+							echo "</form>";
 						}
 						else{
-							echo "<p>";
-							echo "Username: " . $row['username'] . "<br/>";
-							echo "Active: no <br/>";
-							echo "Admin:  no <br/>";
-//							echo "<button self.location.href='enable.php' class='logout'>Enable</button>";
-							echo "<br/>";
-							echo "</p>";
+							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
+							echo "<label>Username: " .$row['username']."</label><br/>";					
+							echo "<label>Active: </label>";
+							echo "<input type='checkbox' name='active' value='active'><br/>";
+							echo "<label>Admin: </label>";
+							echo "<input type='checkbox' name='admin' value='admin' ><br/>";
+							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";
+							echo "</form>";
+
 						}
 					}
+					
+					echo "</div>";
 				}
+
+
 				
 				// Close file db connection
 	    			$dbconn = null;
@@ -82,6 +103,6 @@
 				echo $e->getMessage();
 			}
 		?>
-		
+		<button onclick="self.location.href='logout.php'" class="logout">Log out</button></br></br>
 	</body>
 </html>

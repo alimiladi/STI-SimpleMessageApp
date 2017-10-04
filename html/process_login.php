@@ -1,15 +1,15 @@
 <?php
 
-                      session_start();
+	session_start();
 
-                      if(!isset($_SESSION['login_user']))
-                      {
-                        header("location: login.php");
-                      }
-                      else
-                      {
-                        $username = $_SESSION['login_user'];
-                      }
+	if(!isset($_SESSION['login_user']))
+	{
+		header("location: login.php");
+	}
+	else
+	{
+		$username = $_SESSION['login_user'];
+	}
 ?>
 
 <?php
@@ -71,3 +71,4 @@
   }
 
 ?>
+
