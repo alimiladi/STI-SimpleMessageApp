@@ -54,6 +54,8 @@
 							echo "<input type='checkbox' name='admin' value='admin' checked><br/>";
 							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";     
 							echo "</form>";
+							echo "<button name='delete' onclick=\"self.location.href='del_user.php?id=".$row['id']."'\" class=\"logout\">delete</button>";
+							
 						}
 						else{
 							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
@@ -64,6 +66,7 @@
 							echo "<input type='checkbox' name='admin' value='admin'><br/>";
 							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";
 							echo "</form>";
+							echo "<button name='delete' onclick=\"self.location.href='del_user.php?id=".$row['id']."'\" class=\"logout\">delete</button>";
 						}
 					}
 					else{
@@ -76,6 +79,7 @@
 							echo "<input type='checkbox' name='admin' value='admin' checked><br/>";
 							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";
 							echo "</form>";
+							echo "<button name='delete' onclick=\"self.location.href='del_user.php?id=".$row['id']."'\" class=\"logout\">delete</button>";
 						}
 						else{
 							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
@@ -86,7 +90,7 @@
 							echo "<input type='checkbox' name='admin' value='admin' ><br/>";
 							echo "<input type='submit' name='".$row['id']."' value='save_changes' class='submit'>";
 							echo "</form>";
-
+							echo "<button name='delete' onclick=\"self.location.href='del_user.php?id=".$row['id']."'\" class=\"logout\">delete</button>";
 						}
 					}
 					
@@ -103,6 +107,9 @@
 				echo $e->getMessage();
 			}
 		?>
+		
+
+		<button onclick="history.go(-1);">Back</button>
 		<button onclick="self.location.href='logout.php'" class="logout">Log out</button></br></br>
 	</body>
 </html>

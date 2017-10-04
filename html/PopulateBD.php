@@ -32,12 +32,12 @@ echo 'Now we are populating the database<br>';
     /**************************************
     * Create tables                       *
     **************************************/
-      // table users
-      // we use an integer type to replace boolean type 
+      // Create table users
+      // There is no boolean in sqlite so we use integer for the flag admin
       $file_db->exec("CREATE TABLE IF NOT EXISTS users(
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
                   username TEXT,
-                  active INTEGER,
+                  enable INTEGER,
                   password TEXT,
                   admin INTEGER
       )");
@@ -81,13 +81,13 @@ echo 'Now we are populating the database<br>';
                 array(
 			'id' => '0',  
 			'username' => 'Daniel',
-                        'active' => 1,
+                        'enable' => 1,
                         'password' => 'password',
                         'admin' => 1),
                 array(  
 			'id' => '1',
 			'username' => 'Ali',
-                        'active' => 1,
+                        'enable' => 1,
                         'password' => 'user01',
                         'admin' => 0),
                   );
@@ -119,8 +119,8 @@ echo 'Now we are populating the database<br>';
     // we create this table to manage users
 
     foreach($users as $u){
-        $file_db->exec("INSERT INTO users (id, username, active, password, admin)
-                VALUES ('{$u['id']}', '{$u['username']}', '{$u['active']}', '{$u['password']}', '{$u['admin']}')");
+        $file_db->exec("INSERT INTO users (id, username, enable, password, admin)
+                VALUES ('{$u['id']}', '{$u['username']}', '{$u['enable']}', '{$u['password']}', '{$u['admin']}')");
     }
 
     $result =  $file_db->query('SELECT * FROM users');
@@ -128,7 +128,7 @@ echo 'Now we are populating the database<br>';
     foreach($result as $row) {
       echo "Id: " . $row['id'] . "<br/>";
       echo "Username: " . $row['username'] . "<br/>";
-      echo "Active: " . $row['active'] . "<br/>";
+      echo "Enable: " . $row['enable'] . "<br/>";
       echo "Admin: " . $row['admin'] . "<br/>";
       echo "<br/>";
     }

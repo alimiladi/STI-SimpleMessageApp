@@ -22,6 +22,9 @@
       $username = $_POST["username"];
       $password = $_POST["password"];
 
+      echo 'Hello ' . $username . '! <br>';
+      echo 'Your password is ' . $password . '! <br>';
+
       // Create (connect to) SQLite database in file
       $db = new PDO('sqlite:/var/www/databases/database.sqlite');
 
@@ -29,7 +32,7 @@
       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       // Look in the DB if the username/password are correct
-      $result = $db->query("SELECT COUNT(*) as count FROM users WHERE username = '$username' AND password = '$password' AND active= 1");
+      $result = $db->query("SELECT COUNT(*) as count FROM users WHERE username = '$username' AND password = '$password' AND enable= 1");
 
       $count = $result->fetchColumn();
 
