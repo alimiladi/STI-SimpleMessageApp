@@ -2,15 +2,13 @@
 
 	session_start();
 
-	if(!isset($_SESSION['login_user']))
-	{
-	header("location: login.php");
+	if(!isset($_SESSION['login_user'])){
+		header("location: login.php");
 	}
-	else
-	{
-	$username = $_SESSION['login_user'];
+	else{
+		echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
 	}
-	?>
+?>
 <!DOCTYPE html>
 <html>
 	<head>

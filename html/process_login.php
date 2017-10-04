@@ -8,7 +8,8 @@
 	}
 	else
 	{
-		$username = $_SESSION['login_user'];
+		echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
+				
 	}
 ?>
 

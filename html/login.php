@@ -2,15 +2,8 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-
     <title>Login page</title>
-
-		<script>
-			function show_alert() {
-		   		alert("Login failed\nThe username/password doesn't match");
-			}
-		</script>
-	</head>
+</head>
 	
   <body>
 
@@ -33,7 +26,7 @@
   if(isset($_SESSION['wrong_password']) && $_SESSION['wrong_password'])
   {
    	echo '<script type="text/javascript">
-		show_alert();
+		alert("Login failed\nThe username/password doesn\'t match");
 	</script>';
 
 	//unset wrong_password flag
@@ -41,29 +34,28 @@
   }
 ?>
 
-
-								<form id="login-form" action="process_login.php" method="post" role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<form id="login-form" action="process_login.php" method="post" role="form" style="display: block;">
+<div class="form-group">
+<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
+</div>
+<div class="form-group">
+<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+</div>
+<div class="form-group">
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">
+<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
   </body>
 </html>
