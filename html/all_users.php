@@ -8,7 +8,12 @@
       }
       else
       {
-        $username = $_SESSION['login_user'];
+        if (isset($_SESSION['admin'])){
+                        	$username = $_SESSION['login_user'];
+			}
+			else{
+				echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
+			};
       }
 ?>
 

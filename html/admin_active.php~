@@ -7,7 +7,9 @@
 	}
 	else
 	{
-		$username = $_SESSION['login_user'];
+
+		echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
+			
 	}
 ?>
 <!DOCTYPE html>
@@ -31,23 +33,22 @@
 				// Set errormode to exceptions
 				$dbconn->setAttribute(PDO::ATTR_ERRMODE, 
 						    PDO::ERRMODE_EXCEPTION); 
-				$id = $_REQUEST['usrid'];
-				echo "id = ".$id. "<br/>";
+				
 				//Checking for checkboxes validity
 				if(isset($_POST['active'])){
 					if(isset($_POST['admin'])){
-						$dbconn->exec("UPDATE users SET enable = '1', admin='1' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '1', admin='1' WHERE id = '".$_GET['fetched_id']."';");
 					}
 					else{
-						$dbconn->exec("UPDATE users SET enable = '1', admin='0' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '1', admin='0' WHERE id = '".$_GET['fetched_id']."';");
 					}
 				}
 				else{
 					if(isset($_POST['admin'])){
-						$dbconn->exec("UPDATE users SET enable = '0', admin='1' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '0', admin='1' WHERE id = '".$_GET['fetched_id']."';");
 					}
 					else{
-						$dbconn->exec("UPDATE users SET enable = '0', admin='0' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '0', admin='0' WHERE id = '".$_GET['fetched_id']."';");
 					}
 				}
 				// Redirect to originating page
@@ -61,5 +62,9 @@
 				echo $e->getMessage();
 			}
 		?>
+<<<<<<< HEAD
+=======
+>
+>>>>>>> 1da2ce1fcb4abbc9af6ae9c01dd6f6263af016e4
 	</body>
 </html>

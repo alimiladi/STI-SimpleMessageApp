@@ -1,5 +1,16 @@
+<!DOCTYPE html>
+
+<!--
+	This is a script called to populate the application database with some initial data.
+	It is aimed to be run only once, at the first time that the user lanches the application.
+	It defines three users, one of them is an admin and the two others are regular users.
+-->
+
 <html>
-<head></head>
+<head>
+		<title>Populating the DB !</title>
+		<meta charset="utf-8">
+</head>
 <body>
 
 <?php
@@ -127,6 +138,6 @@ echo 'Now we are populating the database<br>';
     echo $e->getMessage();
   }
 ?>
-
+<script type="text/javascript">alert("DB populated correctly");window.location = "login.php";</script>
 </body>
 </html>

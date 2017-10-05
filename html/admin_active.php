@@ -7,7 +7,9 @@
 	}
 	else
 	{
-		$username = $_SESSION['login_user'];
+
+		echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
+			
 	}
 ?>
 <!DOCTYPE html>
@@ -31,8 +33,7 @@
 				// Set errormode to exceptions
 				$dbconn->setAttribute(PDO::ATTR_ERRMODE, 
 						    PDO::ERRMODE_EXCEPTION); 
-				$id = $_REQUEST['usrid'];
-				echo "id = ".$id. "<br/>";
+				
 				//Checking for checkboxes validity
 				if(isset($_POST['active'])){
 					if(isset($_POST['admin'])){
