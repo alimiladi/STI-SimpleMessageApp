@@ -5,9 +5,6 @@
 	if(!isset($_SESSION['login_user'])){
 		header("location: login.php");
 	}
-	else{
-		echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,6 +48,7 @@
 				echo $e->getMessage();
 			}
 		?>
+<button onclick="history.go(-1);">Back</button>
 	</body>
 </html>
 

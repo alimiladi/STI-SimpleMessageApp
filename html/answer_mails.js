@@ -5,7 +5,7 @@ function answer_mails(recipient, title)
 
     if (answer != null)
     {   
-        post('/send_message.php', {recipient: recipient, title: "Reply to " + title, message: answer});
+        post('/send_mails.php', {recipient: recipient, title: "Reply to " + title, message: answer});
     }
 }
 

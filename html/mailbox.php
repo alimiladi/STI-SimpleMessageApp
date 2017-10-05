@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<!--lire messages
+écrire un nouveau message
+gérer les users (admin)
+changer le mdp-->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -28,7 +31,7 @@
 ?>
 
         <h2> Write a new message </h2>
-          <form id="message_form" action="send_message.php" method="post" role="form">
+          <form id="message_form" action="send_mails.php" method="post" role="form">
             <div class="form-group">
              <label for="sel1">Chose recipient</label>
              <select class="form-control" name="recipient">'
@@ -66,6 +69,6 @@
 
     </div>
   </div>
-
+<button onclick="history.go(-1);">Back</button>
 </body>
 </html>

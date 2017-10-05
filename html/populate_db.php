@@ -55,7 +55,7 @@ echo 'Now we are populating the database<br>';
 
     // Create table messages
     $file_db->exec("CREATE TABLE IF NOT EXISTS messages (
-                  id INTEGER PRIMARY KEY,
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
                   title TEXT,
                   message TEXT,
                   time TEXT,
@@ -96,35 +96,12 @@ echo 'Now we are populating the database<br>';
                 VALUES ('{$m['title']}', '{$m['message']}', '{$formatted_time}','{$m['sender_id']}', '{$m['receiver_id']}')");
     }
 
-    $result =  $file_db->query('SELECT * FROM messages');
-
-    foreach($result as $row) {
-      echo "Id: " . $row['id'] . "<br/>";
-      echo "Title: " . $row['title'] . "<br/>";
-      echo "Message: " . $row['message'] . "<br/>";
-      echo "Time: " . $row['time'] . "<br/>";
-      echo "Sender_id: " . $row['sender_id'] . "<br/>";
-      echo "Receiver_id: " . $row['receiver_id'] . "<br/>";
-      echo "<br/>";
-    }
-
     // we create this table to manage users
 
     foreach($users as $u){
         $file_db->exec("INSERT INTO users (id, username, active, password, admin)
                 VALUES ('{$u['id']}', '{$u['username']}', '{$u['active']}', '{$u['password']}', '{$u['admin']}')");
     }
-
-    $result =  $file_db->query('SELECT * FROM users');
-
-    foreach($result as $row) {
-      echo "Id: " . $row['id'] . "<br/>";
-      echo "Username: " . $row['username'] . "<br/>";
-      echo "Active: " . $row['active'] . "<br/>";
-      echo "Admin: " . $row['admin'] . "<br/>";
-      echo "<br/>";
-    }
-
 
     /**************************************
     * Close db connections                *

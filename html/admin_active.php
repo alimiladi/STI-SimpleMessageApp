@@ -13,7 +13,7 @@
 	}
 ?>
 <!DOCTYPE html>
-<!--ajouter un user-->
+
 <html>
 	<head>
 		<title>Add a new user</title>
