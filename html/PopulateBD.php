@@ -43,11 +43,11 @@
 				* Create tables                       *
 				**************************************/
 				// Creating the two tables for storing the users and the messages.
-				// There is no boolean in sqlite so we use integers to represent the flags 'admin' and 'enable'.
+				// There is no boolean in sqlite so we use integers to represent the flags 'admin' and 'active'.
 				$file_db->exec("CREATE TABLE IF NOT EXISTS users(
 					  id INTEGER PRIMARY KEY AUTOINCREMENT,
 					  username TEXT,
-					  enable INTEGER,
+					  active INTEGER,
 					  password TEXT,
 					  admin INTEGER
 				)");
@@ -58,10 +58,10 @@
 					  title TEXT,
 					  message TEXT,
 					  time TEXT,
-					  id_user_sender INTEGER,
-					  id_user_receiver INTEGER,
-					  FOREIGN KEY(id_user_sender) REFERENCES users(id),
-					  FOREIGN KEY(id_user_receiver) REFERENCES users(id)
+					  sender_id INTEGER,
+					  receiver_id INTEGER,
+					  FOREIGN KEY(sender_id) REFERENCES users(id),
+					  FOREIGN KEY(receiver_id) REFERENCES users(id)
 				)");
 
 				/**************************************
@@ -74,41 +74,41 @@
 							'title' => 'Hello!',
 							'message' => 'Just testing...',
 							'time' => 1327301464,
-							'id_user_sender' => 1,
-							'id_user_receiver' => 0
+							'sender_id' => 1,
+							'receiver_id' => 0
 						),
 						array('title' => 'Hello again!',
 							'message' => 'More testing...',
 							'time' => 1339428612,
-							'id_user_sender' => 2,
-							'id_user_receiver' => 1
+							'sender_id' => 2,
+							'receiver_id' => 1
 						),
 						array('title' => 'Hi!',
 							'message' => 'SQLite3 is cool...',
 							'time' => 1327214268,
-							'id_user_sender' => 2,
-							'id_user_receiver' => 1)
+							'sender_id' => 2,
+							'receiver_id' => 1)
 						);
 
 				$users = array(
 						array(
 							'id' => '0',  
 							'username' => 'admin',
-							'enable' => 1,
+							'active' => 1,
 							'password' => 'admin',
 							'admin' => 1
 						),
 						array(  
 							'id' => '1',
 							'username' => 'bob',
-							'enable' => 1,
+							'active' => 1,
 							'password' => 'bob',
 							'admin' => 0
 						),
 						array(  
 							'id' => '2',
 							'username' => 'alice',
-							'enable' => 1,
+							'active' => 1,
 							'password' => 'alice',
 							'admin' => 0
 						)
@@ -126,8 +126,8 @@
 				}
 
 				foreach($users as $u){
-					$file_db->exec("INSERT INTO users (username, enable, password, admin)
-						VALUES ('{$u['username']}', '{$u['enable']}', '{$u['password']}', '{$u['admin']}')");
+					$file_db->exec("INSERT INTO users (username, active, password, admin)
+						VALUES ('{$u['username']}', '{$u['active']}', '{$u['password']}', '{$u['admin']}')");
 				}
 
 
