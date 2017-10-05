@@ -1,62 +1,71 @@
 <!DOCTYPE html>
-<!--lire messages
-écrire un nouveau message
-gérer les users (admin)
-changer le mdp-->
 
-<html>
-	<head>
-		<title>Mailbox</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body style="margin: 0; padding: 0;">
- 		<table border="1" cellpadding="0" cellspacing="0" width="100%" align="right">
-  			<tr>
-   				<table align="right" border="1" cellpadding="0" cellspacing="0" width="80%" style="border-collapse: collapse;" class="top_menu">
- 					<tr>
-						<td bgcolor="#123456">
-							<ul id="Horizental_menu">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
 
-								<li>Subject</li>
 
-								<li>Sender</li>
+  <title>Mailbox</title>
 
-								<li>Date</li>
 
-							</ul>
-						</td>
- 					</tr>
- 					<tr>
-						<td>Row 2!</td>
- 					</tr>
- 					<tr>
-						<td>Row 3!</td>
- 					</tr>
-				</table>
-  			</tr>
- 		</table>
-		<table border="1" cellpadding="0" cellspacing="0" width="100%">
-  			<tr>
-   				<table align="left" border="1" cellpadding="0" cellspacing="0" width="20%" style="border-collapse: collapse;" class="left_menu">
- 					<tr>
-						<td bgcolor="#111111">
-							<ul id="Vertical_menu">
+</head>
+<body>
 
-								<li>Inbox</li>
 
-							</ul>
-						</td>
+                   <?php
 
- 					</tr>
- 					<tr>
-						<td><li>Sent</li></td>
- 					</tr>
- 					<tr>
-						<td><li>New message</li></td>
- 					</tr>
-				</table>
-  			</tr>
- 		</table>
-	</body>	
+                      session_start();
 
+                      if(!isset($_SESSION['login_user']))
+                      {
+                        header("location: login.php");
+                      }
+                      else
+                      {
+                        $username = $_SESSION['login_user'];
+                      }
+
+?>
+
+        <h2> Write a new message </h2>
+          <form id="message_form" action="send_message.php" method="post" role="form">
+            <div class="form-group">
+             <label for="sel1">Chose recipient</label>
+             <select class="form-control" name="recipient">'
+
+             <?php
+                      // Create (connect to) SQLite database in file
+                      $db = new PDO('sqlite:/var/www/databases/database.sqlite');
+
+                      // Set errormode to exceptions
+                      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $result = $db->query("SELECT * FROM users WHERE NOT username = '$username'");
+              while($row = $result->fetch())
+             {
+                echo '<option>'. $row['username'] .'</option>';
+             }
+
+             ?>
+
+              </select>
+            </div>
+
+            <div class="form-group">
+                 <label for="title">Title</label>
+                 <input type="text" class="form-control" name="title">
+             </div>
+             <div class="form-group">
+                 <label for="message">Content</label>
+                 <textarea id="message" name="message"></textarea>
+             </div>
+             <div class="form-group">
+             <input type="submit" class="btn btn-default" value="Send the message">
+             </div>
+          </form>
+
+    </div>
+  </div>
+
+</body>
 </html>

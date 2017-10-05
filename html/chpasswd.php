@@ -51,7 +51,6 @@
 				echo $e->getMessage();
 			}
 		?>
-		<button onclick="history.go(-1);">Back</button>
 	</body>
 </html>
 

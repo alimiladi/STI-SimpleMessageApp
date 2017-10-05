@@ -37,18 +37,18 @@
 				//Checking for checkboxes validity
 				if(isset($_POST['active'])){
 					if(isset($_POST['admin'])){
-						$dbconn->exec("UPDATE users SET enable = '1', admin='1' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '1', admin='1' WHERE id = '".$_GET['fetched_id']."';");
 					}
 					else{
-						$dbconn->exec("UPDATE users SET enable = '1', admin='0' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '1', admin='0' WHERE id = '".$_GET['fetched_id']."';");
 					}
 				}
 				else{
 					if(isset($_POST['admin'])){
-						$dbconn->exec("UPDATE users SET enable = '0', admin='1' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '0', admin='1' WHERE id = '".$_GET['fetched_id']."';");
 					}
 					else{
-						$dbconn->exec("UPDATE users SET enable = '0', admin='0' WHERE id = '".$_GET['fetched_id']."';");
+						$dbconn->exec("UPDATE users SET active = '0', admin='0' WHERE id = '".$_GET['fetched_id']."';");
 					}
 				}
 				// Redirect to originating page
@@ -62,6 +62,5 @@
 				echo $e->getMessage();
 			}
 		?>
->
 	</body>
 </html>
