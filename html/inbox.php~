@@ -12,7 +12,7 @@
 <body>
 
 
-                   <?php
+                    <?php
 
                       session_start();
 
@@ -25,20 +25,29 @@
                         $username = $_SESSION['login_user'];
                       }
 
-?>
-
-        <h2> Write a new message </h2>
-          <form id="message_form" action="send_message.php" method="post" role="form">
-            <div class="form-group">
-             <label for="sel1">Chose recipient</label>
-             <select class="form-control" name="recipient">'
-
-             <?php
+                     
                       // Create (connect to) SQLite database in file
                       $db = new PDO('sqlite:/var/www/databases/database.sqlite');
 
                       // Set errormode to exceptions
                       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                      //get user id
+                      $result = $db->query("SELECT id FROM users WHERE username = '$username';");
+                      $user = $result->fetch();
+                      $id_user = $user['id'];
+
+                      // retrieve the received messages
+                      $result = $db->query("SELECT * FROM messages WHERE id_user_receiver = '$id_user' ORDER BY time");
+?>
+
+        <h2> Write a new message </h2>
+          <form id="message_form" action="send_message.php" method="post" role="form">
+            <div class="form-group">
+             <label for="sel1">Select recipient</label>
+             <select class="form-control" name="recipient">'
+
+             <?php
 
             $result = $db->query("SELECT * FROM users WHERE NOT username = '$username'");
               while($row = $result->fetch())
@@ -52,7 +61,7 @@
             </div>
 
             <div class="form-group">
-                 <label for="title">Title</label>
+                 <label for="title">Subject</label>
                  <input type="text" class="form-control" name="title">
              </div>
              <div class="form-group">
@@ -63,6 +72,7 @@
              <input type="submit" class="btn btn-default" value="Send the message">
              </div>
           </form>
+	<a href="list_mails.php">List of mails</a>
 
     </div>
   </div>

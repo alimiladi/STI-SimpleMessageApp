@@ -62,5 +62,9 @@
 				echo $e->getMessage();
 			}
 		?>
+<<<<<<< HEAD
+=======
+>
+>>>>>>> 1da2ce1fcb4abbc9af6ae9c01dd6f6263af016e4
 	</body>
 </html>

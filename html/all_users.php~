@@ -8,12 +8,7 @@
       }
       else
       {
-        if (isset($_SESSION['admin'])){
-                        	$username = $_SESSION['login_user'];
-			}
-			else{
-				echo "<script type='text/javascript'>alert('Unauthorized');history.go(-1);</script>";
-			};
+        $username = $_SESSION['login_user'];
       }
 ?>
 
@@ -49,7 +44,7 @@
 				foreach($users as $row) {
 					
 					echo "<div class='all-users'>";
-					if($row['active'] == 1){
+					if($row['enable'] == 1){
 						if($row['admin'] == 1){
 							echo "<form method='post' action='admin_active.php?fetched_id=".$row['id']."'>";
 							echo "<label>Username: " .$row['username']."</label><br/>";					
