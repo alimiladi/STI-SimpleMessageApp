@@ -1,16 +1,21 @@
+<!--
+		This is the page that changes a user's password.
+		There isn't any checks about the new password unless it can't be empty.
+		The new password is written directly in the database and the user gets notified by the end of the operation.
+-->
+
 <?php
+/**********************************************************************************************************************************************/
+/*							Authentication checks								      */
+/**********************************************************************************************************************************************/
 
+	// Checking whether the user is logged in...
 	session_start();
-
-	if(!isset($_SESSION['login_user']))
-	{
-	header("location: login.php");
+	if(!isset($_SESSION['login_user'])){
+	// ...If not, redirect to the login page
+		header("location: login.php");
 	}
-	else
-	{
-	$username = $_SESSION['login_user'];
-	}
-	?>
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +25,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 			    $(".submit").click(function(){
-				alert("Password changed successfully");				
+				alert("Password changed successfully");
 			    });
 			});
 		</script>
@@ -35,16 +40,16 @@
 		</form>
 		<button onclick="self.location.href='logout.php'" class="logout">Log out</button></br></br>
 		<?php
-			try{			
+			try{
 				// Create (connect to) SQLite database in file
 				$dbconn = new PDO('sqlite:/var/www/databases/database.sqlite');
 				// Set errormode to exceptions
-				$dbconn->setAttribute(PDO::ATTR_ERRMODE, 
-						    PDO::ERRMODE_EXCEPTION); 
+				$dbconn->setAttribute(PDO::ATTR_ERRMODE,
+						    PDO::ERRMODE_EXCEPTION);
 				//Checking whether fields are correctly set by user
 				if(isset($_POST['Password'])){
 					$dbconn->exec("UPDATE users SET password = '{$_POST['Password']}' WHERE username = '$username';");
-				}	
+				}
 				// Close file db connection
 	    			$dbconn = null;
 			}
@@ -56,4 +61,3 @@
 		<button onclick="history.go(-1);">Back</button>
 	</body>
 </html>
-
