@@ -45,7 +45,7 @@
 ?>
 
 
-								<form id="login-form" action="check_login.php" method="post" role="form" style="display: block;">
+								<form id="login-form" action="process_login.php" method="post" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
 									</div>

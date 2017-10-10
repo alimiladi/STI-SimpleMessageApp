@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
-	In this script we print the messages contain in the database.
--->
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -35,13 +33,13 @@
                       // Set errormode to exceptions
                       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                      // There we get the id of current user connected
+                      //get user id
                       $result = $db->query("SELECT id FROM users WHERE username = '$username';");
-                      $current_user = $result->fetch();
-                      $id_current_user = $current_user['id'];
+                      $user = $result->fetch();
+                      $id_user = $user['id'];
 
-                      // There we get received messages with current_user_id
-                      $result = $db->query("SELECT * FROM messages WHERE receiver_id = '$id_current_user' ORDER BY time");
+                      // retrieve the received messages
+                      $result = $db->query("SELECT * FROM messages WHERE receiver_id = '$id_user' ORDER BY time");
 
                       while($message = $result->fetch())
                       {

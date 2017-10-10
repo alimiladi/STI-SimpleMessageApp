@@ -1,5 +1,5 @@
 <!--
-	In this script we send a message to the correct user.
+	In this script we send a message to the correct user
 -->
 <?php
 
@@ -17,7 +17,7 @@
   try {
     if(!empty($_POST["receiver"]) && !empty($_POST["title"]) && !empty($_POST["message"]))
     {
-      // There we retrieve informations about message
+
       $receiver = $_POST["receiver"];
       $title = $_POST["title"];
       $message_content = $_POST["message"];

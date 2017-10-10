@@ -1,6 +1,3 @@
-<!--
-	In this script we delete a message in the database. We use the 		message_id and the current_user_id to access the message with a SQL request. 
--->
 <?php
 
   session_start();
@@ -16,6 +13,8 @@
 
   try {
 
+    echo $_GET['message_id'];
+
     if(!empty($_GET['message_id']))
     {
 
@@ -27,18 +26,18 @@
       // Set errormode to exceptions
       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      // There we get id of user connected
+      // Get id of current user
       $result = $db->query("SELECT id FROM users WHERE username = '$username'");
       $current_user = $result->fetch();
       $id_current_user = $current_user['id'];
 
-      // There we check if the user who delete is the receiver
+      // Check if the user who want to delete the message is the recipient
       $result = $db->query("SELECT COUNT(*) as count FROM messages WHERE id = '$message_id' AND receiver_id = '$id_current_user'");
       $count = $result->fetchColumn();
 
       if($count == 1)
       {
-        // There we delete the message 
+        // Delete the message
         $result = $db->query("DELETE FROM messages WHERE id = '$message_id'");
 
         $_SESSION['message_deleted'] = true;

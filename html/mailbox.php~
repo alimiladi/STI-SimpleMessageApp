@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
-	In this page html the users can wirte a new message.
--->
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -14,18 +12,18 @@
 <body>
 
 
-<?php
+                   <?php
 
-	session_start();
+                      session_start();
 
-	if(!isset($_SESSION['login_user']))
-	{
-	header("location: login.php");
-	}
-	else
-	{
-	$username = $_SESSION['login_user'];
-	}
+                      if(!isset($_SESSION['login_user']))
+                      {
+                        header("location: login.php");
+                      }
+                      else
+                      {
+                        $username = $_SESSION['login_user'];
+                      }
 
 ?>
 
@@ -43,7 +41,6 @@
                       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $result = $db->query("SELECT * FROM users WHERE NOT username = '$username'");
-	      // There we show all the active users in database
               while($row = $result->fetch())
              {
                 echo '<option>'. $row['username'] .'</option>';
